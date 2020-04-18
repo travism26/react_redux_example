@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 // Creating a static list of songs mean you can load this from a DB or what not
 // just used as an example.
 const songsReducer = () => {
@@ -9,10 +11,15 @@ const songsReducer = () => {
   ];
 };
 
-const selectedSongReducer = (selectedSong = null) => {
+const selectedSongReducer = (selectedSong = null, action) => {
   if (action.type === "SONG_SELECTED") {
     return action.payload;
   }
 
   return selectedSong;
 };
+
+export default combineReducers({
+    songs: songsReducer,
+    selectedSong: selectedSongReducer
+});
